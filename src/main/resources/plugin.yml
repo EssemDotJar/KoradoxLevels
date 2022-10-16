@@ -6,3 +6,8 @@ author: EssemDotJar
 description: Levels plugin for Koradox.
 
 api-version: 1.19
+
+commands:
+  level:
+    usage: /level
+    description: WhatIsMyLevel...
