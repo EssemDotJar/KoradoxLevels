@@ -8,6 +8,8 @@ import jar.essem.main.utils.customitems.CustomItemsEnum;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.inventory.FurnaceRecipe;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -39,6 +41,11 @@ public class Main extends JavaPlugin {
 	}
 
 	public final void registerRecipes() {
+		itemRecipes();
+		furnaceRecipes();
+	}
+
+	public void itemRecipes() {
 		// create a NamespacedKey for your recipe
 		NamespacedKey key = new NamespacedKey(this, "gem_base");
 
@@ -53,6 +60,12 @@ public class Main extends JavaPlugin {
 		recipe.setIngredient('R', Material.BLAZE_POWDER);
 
 		// Finally, add the recipe to the bukkit recipes
+		Bukkit.addRecipe(recipe);
+	}
+
+	public void furnaceRecipes() {
+		NamespacedKey key = new NamespacedKey(this, "gem_common");
+		FurnaceRecipe recipe = new FurnaceRecipe(key, new ItemStack(Material.SLIME_BALL), Material.SLIME_BALL, 10f, 10);
 		Bukkit.addRecipe(recipe);
 	}
 }

@@ -9,7 +9,8 @@ import java.util.List;
 
 public class CustomItems {
 
-	private final Material OVERRIDE = Material.SLIME_BALL;
+	private final Material OVERRIDE_GEM = Material.RAW_IRON;
+	private final Material OVERRIDE_MAT = Material.COAL;
 
 	public ItemStack getCustomItem(CustomItemsEnum item) {
 		return switch (item) {
@@ -30,71 +31,71 @@ public class CustomItems {
 	public ItemStack gemBase() {
 		final String displayName = "base";
 		final List<String> lore = Arrays.asList("", "");
-		return itemStack(1, displayName, lore);
+		return itemStack(OVERRIDE_GEM, 1, displayName, lore);
 	}
 
 	public ItemStack gemCommon() {
 		final String displayName = "common";
 		final List<String> lore = Arrays.asList("", "");
-		return itemStack(2, displayName, lore);
+		return itemStack(OVERRIDE_GEM, 2, displayName, lore);
 	}
 
 	public ItemStack gemUncommon() {
 		final String displayName = "uncommon";
 		final List<String> lore = Arrays.asList("", "");
-		return itemStack(3, displayName, lore);
+		return itemStack(OVERRIDE_GEM, 3, displayName, lore);
 	}
 
 	public ItemStack gemRare() {
 		final String displayName = "rare";
 		final List<String> lore = Arrays.asList("", "");
-		return itemStack(4, displayName, lore);
+		return itemStack(OVERRIDE_GEM, 4, displayName, lore);
 	}
 
 	public ItemStack gemEpic() {
 		final String displayName = "epic";
 		final List<String> lore = Arrays.asList("", "");
-		return itemStack(5, displayName, lore);
+		return itemStack(OVERRIDE_GEM, 5, displayName, lore);
 	}
 
 	public ItemStack gemLegendary() {
 		final String displayName = "legendary";
 		final List<String> lore = Arrays.asList("", "");
-		return itemStack(6, displayName, lore);
+		return itemStack(OVERRIDE_GEM, 6, displayName, lore);
 	}
 
 	public ItemStack matCommon() {
 		final String displayName = "common";
 		final List<String> lore = Arrays.asList("", "");
-		return itemStack(7, displayName, lore);
+		return itemStack(OVERRIDE_MAT, 1, displayName, lore);
 	}
 
 	public ItemStack matUncommon() {
 		final String displayName = "uncommon";
 		final List<String> lore = Arrays.asList("", "");
-		return itemStack(8, displayName, lore);
+		return itemStack(OVERRIDE_MAT, 2, displayName, lore);
 	}
 
 	public ItemStack matRare() {
 		final String displayName = "rare";
 		final List<String> lore = Arrays.asList("", "");
-		return itemStack(9, displayName, lore);
+		return itemStack(OVERRIDE_MAT, 3, displayName, lore);
 	}
 
 	public ItemStack matEpic() {
 		final String displayName = "epic";
 		final List<String> lore = Arrays.asList("", "");
-		return itemStack(10, displayName, lore);
+		return itemStack(OVERRIDE_MAT, 4, displayName, lore);
 	}
 
 	public ItemStack matLegendary() {
 		final String displayName = "legendary";
 		final List<String> lore = Arrays.asList("", "");
-		return itemStack(11, displayName, lore);
+		return itemStack(OVERRIDE_MAT, 5, displayName, lore);
 	}
 
-	public ItemStack itemStack(int customModelData, String displayName, List<String> lore) { // can make this its own class and instead do new ItemStack like an override typa thing...
-		ItemStack item = new ItemStack(this.OVERRIDE);
+	public ItemStack itemStack(Material material, int customModelData, String displayName, List<String> lore) { // can make this its own class and instead do new ItemStack like an override typa thing...
+		ItemStack item = new ItemStack(material);
 		ItemMeta meta = item.getItemMeta();
 
 		meta.setCustomModelData(customModelData);
