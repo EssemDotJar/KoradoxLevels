@@ -11,3 +11,5 @@ commands:
   level:
     usage: /level
     description: WhatIsMyLevel...
+  giveitem:
+    usage: /give <onlinePlayer> <item>
