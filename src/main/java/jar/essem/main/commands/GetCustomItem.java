@@ -34,24 +34,37 @@ public class GetCustomItem implements CommandExecutor {
 					}
 					CustomItems items = new CustomItems();
 					ItemStack item = switch (args[1].toUpperCase()) {
-						case "GEM_BASE" -> items.getCustomItem(CustomItemsEnum.GEM_BASE);
-						case "GEM_COMMON" -> items.getCustomItem(CustomItemsEnum.GEM_COMMON);
-						case "GEM_UNCOMMON" -> items.getCustomItem(CustomItemsEnum.GEM_UNCOMMON);
-						case "GEM_RARE" -> items.getCustomItem(CustomItemsEnum.GEM_RARE);
-						case "GEM_EPIC" -> items.getCustomItem(CustomItemsEnum.GEM_EPIC);
-						case "GEM_LEGENDARY" -> items.getCustomItem(CustomItemsEnum.GEM_LEGENDARY);
-						case "MAT_COMMON" -> items.getCustomItem(CustomItemsEnum.MAT_COMMON);
-						case "MAT_UNCOMMON" -> items.getCustomItem(CustomItemsEnum.MAT_UNCOMMON);
-						case "MAT_RARE" -> items.getCustomItem(CustomItemsEnum.MAT_RARE);
-						case "MAT_EPIC" -> items.getCustomItem(CustomItemsEnum.MAT_EPIC);
-						case "MAT_LEGENDARY" -> items.getCustomItem(CustomItemsEnum.MAT_LEGENDARY);
+						case "GEM_BASE" -> items.getGem(CustomItemsEnum.GEM_BASE);
+						case "GEM_COMMON" -> items.getGem(CustomItemsEnum.GEM_COMMON);
+						case "GEM_UNCOMMON" -> items.getGem(CustomItemsEnum.GEM_UNCOMMON);
+						case "GEM_RARE" -> items.getGem(CustomItemsEnum.GEM_RARE);
+						case "GEM_EPIC" -> items.getGem(CustomItemsEnum.GEM_EPIC);
+						case "GEM_LEGENDARY" -> items.getGem(CustomItemsEnum.GEM_LEGENDARY);
+						case "MAT_COMMON" -> items.getMaterial(CustomItemsEnum.MAT_COMMON);
+						case "MAT_UNCOMMON" -> items.getMaterial(CustomItemsEnum.MAT_UNCOMMON);
+						case "MAT_RARE" -> items.getMaterial(CustomItemsEnum.MAT_RARE);
+						case "MAT_EPIC" -> items.getMaterial(CustomItemsEnum.MAT_EPIC);
+						case "MAT_LEGENDARY" -> items.getMaterial(CustomItemsEnum.MAT_LEGENDARY);
 						default -> new ItemStack(Material.STONE);
 					};
 					if (item.getType() == Material.STONE) {
 						return false;
 					}
-					player.getInventory().addItem(item);
-					player.sendMessage("You got the item, congrats.");
+					int amount = 1;
+					if (args.length > 2) {
+						try {
+
+							amount = Integer.parseInt(args[2]);
+						} catch (IllegalArgumentException exception) {
+
+						}
+					}
+					item.setAmount(amount);
+					input.getInventory().addItem(item);
+					player.sendMessage("Gave " + player.getName() + " " + amount + " " + item.getItemMeta().getDisplayName());
+					if (input != player) {
+						input.sendMessage(player.getName() + " has given you " + amount + " " + item.getItemMeta().getDisplayName());
+					}
 					return true;
 				}
 			}

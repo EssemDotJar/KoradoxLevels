@@ -9,22 +9,29 @@ import java.util.List;
 
 public class CustomItems {
 
-	private final Material OVERRIDE_GEM = Material.RAW_IRON;
+	private final Material OVERRIDE_GEM = Material.SLIME_BALL;
 	private final Material OVERRIDE_MAT = Material.COAL;
 
-	public ItemStack getCustomItem(CustomItemsEnum item) {
-		return switch (item) {
+	public ItemStack getGem(CustomItemsEnum gem) {
+		return switch (gem) {
 			case GEM_BASE -> this.gemBase();
 			case GEM_COMMON -> this.gemCommon();
 			case GEM_UNCOMMON -> this.gemUncommon();
 			case GEM_RARE -> this.gemRare();
 			case GEM_EPIC -> this.gemEpic();
 			case GEM_LEGENDARY -> this.gemLegendary();
+			default -> new ItemStack(Material.AIR);
+		};
+	}
+
+	public ItemStack getMaterial(CustomItemsEnum material) {
+		return switch (material) {
 			case MAT_COMMON -> this.matCommon();
 			case MAT_UNCOMMON -> this.matUncommon();
 			case MAT_RARE -> this.matRare();
 			case MAT_EPIC -> this.matEpic();
 			case MAT_LEGENDARY -> this.matLegendary();
+			default -> new ItemStack(Material.AIR);
 		};
 	}
 
